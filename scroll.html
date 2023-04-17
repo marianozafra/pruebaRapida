@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrollytelling Example</title>
+  <title>Scrollytelling & Grid Example</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <div class="content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.</p>
-      <p>...</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+    <div class="scrollytelling">
+      <div class="content">
+        <p>Text 1</p>
+        <p>Text 2</p>
+      </div>
+      <div class="images">
+        <img src="https://picsum.photos/id/100/800/600" class="active">
+        <img src="https://picsum.photos/id/200/800/600">
+      </div>
     </div>
-    <div class="images">
-      <img src="https://picsum.photos/id/100/800/600" class="active">
-      <img src="https://picsum.photos/id/200/800/600">
-      <img src="https://picsum.photos/id/300/800/600">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent libero.</p>
+    <div class="grid">
+      <img src="https://picsum.photos/id/101/200/200">
+      <img src="https://picsum.photos/id/102/200/200">
+      <img src="https://picsum.photos/id/103/200/200">
+      <img src="https://picsum.photos/id/104/200/200">
     </div>
   </div>
   <script src="script.js"></script>

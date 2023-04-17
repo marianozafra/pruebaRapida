@@ -1,12 +1,14 @@
 document.addEventListener("scroll", () => {
+    const content = document.querySelectorAll(".content p");
     const images = document.querySelectorAll(".images img");
-    const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
   
-    images.forEach((image, index) => {
-      if (scrollPosition + windowHeight / 2 >= image.offsetTop) {
+    content.forEach((text, index) => {
+      const textPosition = text.getBoundingClientRect().top;
+  
+      if (textPosition <= windowHeight * 0.5) {
         images.forEach(img => img.classList.remove("active"));
-        image.classList.add("active");
+        images[index].classList.add("active");
       }
     });
   });
