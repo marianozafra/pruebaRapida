@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrollytelling & Grid Example</title>
+  <title>Nuevo título del scroll.html</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/scrollstory@0.3.0/dist/jquery.scrollstory.min.js"></script>
 </head>
 <body>
   <div class="container">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-    <div class="scrollytelling">
-      <div class="content">
+    <div class="scrollytelling" id="scrollstory">
+      <div class="story" data-image-src="https://picsum.photos/id/100/800/600">
         <p>Text 1</p>
-        <p>Text 2</p>
       </div>
-      <div class="images">
-        <img src="https://picsum.photos/id/100/800/600" class="active">
-        <img src="https://picsum.photos/id/200/800/600">
+      <div class="story" data-image-src="https://picsum.photos/id/200/800/600">
+        <p>Text 2</p>
       </div>
     </div>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent libero.</p>

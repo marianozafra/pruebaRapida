@@ -1,15 +1,10 @@
-document.addEventListener("scroll", () => {
-    const content = document.querySelectorAll(".content p");
-    const images = document.querySelectorAll(".images img");
-    const windowHeight = window.innerHeight;
-  
-    content.forEach((text, index) => {
-      const textPosition = text.getBoundingClientRect().top;
-  
-      if (textPosition <= windowHeight * 0.5) {
-        images.forEach(img => img.classList.remove("active"));
-        images[index].classList.add("active");
-      }
+$(document).ready(function() {
+    const $scrollytelling = $("#scrollstory");
+    const $images = $scrollytelling.children(".story").map(function() {
+      const $image = $("<div class='images'></div>");
+      $image.css("background-image", `url(${this.dataset.imageSrc})`);
+      $scrollytelling.append($image);
+      return $image;
     });
-  });
   
+    $scrollytelling
