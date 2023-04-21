@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+  var canvas = document.getElementById('myChart');
+  var ctx = canvas.getContext('2d');
+  
+  // Dibujar un gráfico de barras básico
+  var data = [10, 20, 30, 40, 50];
+  var barWidth = 50;
+  var barSpacing = 10;
+  
+  for (var i = 0; i < data.length; i++) {
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(i * (barWidth + barSpacing), canvas.height - data[i], barWidth, data[i]);
+  }
+</script>
+
+</body>
+</html>
