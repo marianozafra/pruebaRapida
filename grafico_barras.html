@@ -2,15 +2,72 @@
 <html>
 <head>
 <style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+  }
+
+  h1 {
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    margin: 1em 0;
+    line-height: 1.5;
+  }
+
   svg {
-    border: 1px solid black;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5em 1em;
+    margin: 1em;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition-duration: 0.4s;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
   }
 </style>
 </head>
 <body>
 
-<svg id="myChart" width="400" height="400"></svg>
+<h1>Gráfico de Barras</h1>
+<p>Este es un ejemplo de gráfico de barras utilizando SVG.</p>
 <button id="increaseValues">Aumentar valores de las barras</button>
+<svg id="myChart" width="400" height="400"></svg>
+<p>El gráfico muestra los valores de datos en un formato de barras.</p>
+
+<div class="grid">
+  <img id="image1" src="https://picsum.photos/id/1/200" alt="Imagen 1">
+  <img id="image2" src="https://picsum.photos/id/2/200" alt="Imagen 2">
+  <img id="image3" src="https://picsum.photos/id/3/200" alt="Imagen 3">
+  <img id="image4" src="https://picsum.photos/id/4/200" alt="Imagen 4">
+</div>
+<button id="changeImages">Cambiar imágenes</button>
 
 <script>
   var svg = document.getElementById('myChart');
@@ -20,7 +77,6 @@
   var barSpacing = 10;
 
   function drawChart() {
-    // Eliminar todos los elementos anteriores
     while (svg.firstChild) {
       svg.removeChild(svg.firstChild);
     }
@@ -44,11 +100,10 @@
     colorIndex = (colorIndex + 1) % colors.length;
     currentColor = colors[colorIndex];
     drawChart();
-  }, 1000);
+  }, 3000);
 
   drawChart();
 
-  // Aumentar los valores de las barras en un 20%
   function increaseBarValues() {
     for (var i = 0; i < data.length; i++) {
       data[i] = data[i] * 1.2;
@@ -56,11 +111,32 @@
     drawChart();
   }
 
-  // Agregar un evento "click" al botón
   var increaseValuesButton = document.getElementById('increaseValues');
   increaseValuesButton.addEventListener('click', increaseBarValues);
+
+  function changeImages() {
+    var image1 = document.getElementById('image1');
+    var image2 = document.getElementById('image2');
+    var image3 = document.getElementById('image3');
+    var image4 = document.getElementById('image4');
+
+    var randomId1 = Math.floor(Math.random() * 1000);
+    var randomId2 = Math.floor(Math.random() * 1000);
+    var randomId3 = Math.floor(Math.random() * 1000);
+    var randomId4 = Math.floor(Math.random() * 1000);
+
+    image1.src = 'https://picsum.photos/id/' + randomId1 + '/200';
+    image2.src = 'https://picsum.photos/id/' + randomId2 + '/200';
+    image3.src = 'https://picsum.photos/id/' + randomId3 + '/200';
+    image4.src = 'https://picsum.photos/id/' + randomId4 + '/200';
+  }
+
+  var changeImagesButton = document.getElementById('changeImages');
+  changeImagesButton.addEventListener('click', changeImages);
 
 </script>
 
 </body>
 </html>
+
+
