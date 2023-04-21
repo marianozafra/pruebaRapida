@@ -10,6 +10,7 @@
 <body>
 
 <canvas id="myChart" width="400" height="400"></canvas>
+<button id="increaseValues">Aumentar valores de las barras</button>
 
 <script>
   var canvas = document.getElementById('myChart');
@@ -26,23 +27,31 @@
     }
   }
 
-  // Colores posibles para la primera barra
   var colors = ['red', 'green', 'yellow', 'purple'];
   var currentColor = colors[0];
   var colorIndex = 0;
 
-  // Cambiar el color de la primera barra cada 3 segundos
   setInterval(function() {
     colorIndex = (colorIndex + 1) % colors.length;
     currentColor = colors[colorIndex];
-
-    // Limpiar el canvas y volver a dibujar el gráfico con el nuevo color
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawChart();
   }, 3000);
 
-  // Dibujar el gráfico inicial
   drawChart();
+
+  // Aumentar los valores de las barras en un 20%
+  function increaseBarValues() {
+    for (var i = 0; i < data.length; i++) {
+      data[i] = data[i] * 1.2;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawChart();
+  }
+
+  // Agregar un evento "click" al botón
+  var increaseValuesButton = document.getElementById('increaseValues');
+  increaseValuesButton.addEventListener('click', increaseBarValues);
 
 </script>
 
