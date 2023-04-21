@@ -5,3 +5,5 @@ Con este documento arreglaré problemas de sincronización entre github y local
 Algunos cambios de texto
 ### Estos son cambios desde mi repositorio local
 Texto local
+### Estos son cambios desde mi repositorio local
+Texto local
