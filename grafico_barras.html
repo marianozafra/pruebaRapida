@@ -51,6 +51,14 @@
     width: 100%;
     height: auto;
   }
+
+  #changingImage {
+    filter: grayscale(100%);
+    width: 500px;
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+  }
 </style>
 </head>
 <body>
@@ -68,6 +76,9 @@
   <img id="image4" src="https://picsum.photos/id/4/200" alt="Imagen 4">
 </div>
 <button id="changeImages">Cambiar imágenes</button>
+
+<img id="changingImage" src="https://picsum.photos/id/100/500" alt="Imagen cambiante">
+<button id="toggleColor">Cambiar a color</button>
 
 <script>
   var svg = document.getElementById('myChart');
@@ -134,9 +145,25 @@
   var changeImagesButton = document.getElementById('changeImages');
   changeImagesButton.addEventListener('click', changeImages);
 
+  function updateChangingImage() {
+    var changingImage = document.getElementById('changingImage');
+    var randomId = Math.floor(Math.random() * 1000);
+    changingImage.src = 'https://picsum.photos/id/' + randomId + '/500';
+  }
+
+  setInterval(updateChangingImage, 1000);
+
+  function toggleColor() {
+    var changingImage = document.getElementById('changingImage');
+    var isGrayscale = changingImage.style.filter === 'grayscale(100%)';
+    changingImage.style.filter = isGrayscale ? 'none' : 'grayscale(100%)';
+  }
+
+  var toggleColorButton = document.getElementById('toggleColor');
+  toggleColorButton.addEventListener('click', toggleColor);
+
 </script>
 
 </body>
 </html>
-
 
