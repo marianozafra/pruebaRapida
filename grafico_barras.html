@@ -2,28 +2,37 @@
 <html>
 <head>
 <style>
-  canvas {
+  svg {
     border: 1px solid black;
   }
 </style>
 </head>
 <body>
 
-<canvas id="myChart" width="400" height="400"></canvas>
+<svg id="myChart" width="400" height="400"></svg>
 <button id="increaseValues">Aumentar valores de las barras</button>
 
 <script>
-  var canvas = document.getElementById('myChart');
-  var ctx = canvas.getContext('2d');
-  
+  var svg = document.getElementById('myChart');
+
   var data = [10, 20, 30, 40, 50];
   var barWidth = 50;
   var barSpacing = 10;
 
   function drawChart() {
+    // Eliminar todos los elementos anteriores
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
+
     for (var i = 0; i < data.length; i++) {
-      ctx.fillStyle = i === 0 ? currentColor : 'blue';
-      ctx.fillRect(i * (barWidth + barSpacing), canvas.height - data[i], barWidth, data[i]);
+      var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', i * (barWidth + barSpacing));
+      rect.setAttribute('y', svg.height.baseVal.value - data[i]);
+      rect.setAttribute('width', barWidth);
+      rect.setAttribute('height', data[i]);
+      rect.setAttribute('fill', i === 0 ? currentColor : 'blue');
+      svg.appendChild(rect);
     }
   }
 
@@ -34,7 +43,6 @@
   setInterval(function() {
     colorIndex = (colorIndex + 1) % colors.length;
     currentColor = colors[colorIndex];
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawChart();
   }, 3000);
 
@@ -45,7 +53,6 @@
     for (var i = 0; i < data.length; i++) {
       data[i] = data[i] * 1.2;
     }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawChart();
   }
 
