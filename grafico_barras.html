@@ -15,15 +15,35 @@
   var canvas = document.getElementById('myChart');
   var ctx = canvas.getContext('2d');
   
-  // Dibujar un gráfico de barras básico
   var data = [10, 20, 30, 40, 50];
   var barWidth = 50;
   var barSpacing = 10;
-  
-  for (var i = 0; i < data.length; i++) {
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(i * (barWidth + barSpacing), canvas.height - data[i], barWidth, data[i]);
+
+  function drawChart() {
+    for (var i = 0; i < data.length; i++) {
+      ctx.fillStyle = i === 0 ? currentColor : 'blue';
+      ctx.fillRect(i * (barWidth + barSpacing), canvas.height - data[i], barWidth, data[i]);
+    }
   }
+
+  // Colores posibles para la primera barra
+  var colors = ['red', 'green', 'yellow', 'purple'];
+  var currentColor = colors[0];
+  var colorIndex = 0;
+
+  // Cambiar el color de la primera barra cada 3 segundos
+  setInterval(function() {
+    colorIndex = (colorIndex + 1) % colors.length;
+    currentColor = colors[colorIndex];
+
+    // Limpiar el canvas y volver a dibujar el gráfico con el nuevo color
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawChart();
+  }, 3000);
+
+  // Dibujar el gráfico inicial
+  drawChart();
+
 </script>
 
 </body>
