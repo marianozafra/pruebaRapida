@@ -9,9 +9,10 @@
       font-family: sans-serif;
       margin: 0;
       padding: 0;
+      background-color: white;
     }
 
-    .sticky {
+    .sticky-container {
       position: sticky;
       top: 0;
       width: 100%;
@@ -19,8 +20,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-size: cover;
-      transition: background-image 0.5s ease-in-out;
+      z-index: -1;
+    }
+
+    .image-container {
+      width: 500px;
+      height: 500px;
+      position: relative;
+    }
+
+    .image-container img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.01s ease-in-out;
     }
 
     .scroll {
@@ -29,29 +45,43 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.5);
       text-align: center;
     }
 
-    h2 {
-      margin: 0;
+    .text-content {
+      width: 350px;
+      background-color: black;
+      color: white;
+      padding: 20px;
     }
   </style>
   <script src="https://unpkg.com/scrollama"></script>
 </head>
 <body>
 
-  <div class="sticky">
-    <div class="scroll" id="text-1">
-      <h2>Text 1</h2>
+  <div class="sticky-container">
+    <div class="image-container">
+      <img src="https://picsum.photos/id/100/500/500" alt="Image 1" id="image-1">
+      <img src="https://picsum.photos/id/101/500/500" alt="Image 2" id="image-2" style="opacity: 0;">
+      <img src="https://picsum.photos/id/102/500/500" alt="Image 3" id="image-3" style="opacity: 0;">
     </div>
+  </div>
 
-    <div class="scroll" id="text-2">
-      <h2>Text 2</h2>
+  <div class="scroll" id="text-1">
+    <div class="text-content">
+      <p>Text 1</p>
     </div>
+  </div>
 
-    <div class="scroll" id="text-3">
-      <h2>Text 3</h2>
+  <div class="scroll" id="text-2">
+    <div class="text-content">
+      <p>Text 2</p>
+    </div>
+  </div>
+
+  <div class="scroll" id="text-3">
+    <div class="text-content">
+      <p>Text 3</p>
     </div>
   </div>
 
@@ -59,16 +89,12 @@
     const scrollama = window.scrollama;
     const scroller = scrollama();
 
-    const images = [
-      'https://picsum.photos/id/100/1920/1080',
-      'https://picsum.photos/id/101/1920/1080',
-      'https://picsum.photos/id/102/1920/1080',
-    ];
-
     function handleStepEnter(response) {
-      const index = parseInt(response.element.id.split('-')[1]) - 1;
-      const sticky = document.querySelector('.sticky');
-      sticky.style.backgroundImage = `url(${images[index]})`;
+      const index = parseInt(response.element.id.split('-')[1]);
+      const images = document.querySelectorAll('.image-container img');
+      images.forEach((img, i) => {
+        img.style.opacity = i === index - 1 ? 1 : 0;
+      });
     }
 
     function init() {
@@ -79,10 +105,6 @@
         debug: false,
       })
       .onStepEnter(handleStepEnter);
-
-      // Set up the initial background image
-      const sticky = document.querySelector('.sticky');
-      sticky.style.backgroundImage = `url(${images[0]})`;
     }
 
     init();
