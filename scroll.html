@@ -16,10 +16,11 @@
       top: 0;
       width: 100%;
       height: 100vh;
-      background-color: lightblue;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-size: cover;
+      transition: background-image 0.5s ease-in-out;
     }
 
     .scroll {
@@ -28,11 +29,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: lightcoral;
+      background-color: rgba(255, 255, 255, 0.5);
+      text-align: center;
     }
 
-    .scroll:nth-child(even) {
-      background-color: lightseagreen;
+    h2 {
+      margin: 0;
     }
   </style>
   <script src="https://unpkg.com/scrollama"></script>
@@ -40,37 +42,33 @@
 <body>
 
   <div class="sticky">
-    <h1>Scroll down to explore!</h1>
-  </div>
+    <div class="scroll" id="text-1">
+      <h2>Text 1</h2>
+    </div>
 
-  <div class="scroll" id="step-1">
-    <p>Step 1: Introduction</p>
-  </div>
+    <div class="scroll" id="text-2">
+      <h2>Text 2</h2>
+    </div>
 
-  <div class="scroll" id="step-2">
-    <p>Step 2: The beginning</p>
-  </div>
-
-  <div class="scroll" id="step-3">
-    <p>Step 3: The journey</p>
-  </div>
-
-  <div class="scroll" id="step-4">
-    <p>Step 4: The end</p>
+    <div class="scroll" id="text-3">
+      <h2>Text 3</h2>
+    </div>
   </div>
 
   <script>
     const scrollama = window.scrollama;
     const scroller = scrollama();
 
-    function handleStepEnter(response) {
-      const el = response.element;
-      el.style.opacity = 1;
-    }
+    const images = [
+      'https://picsum.photos/id/100/1920/1080',
+      'https://picsum.photos/id/101/1920/1080',
+      'https://picsum.photos/id/102/1920/1080',
+    ];
 
-    function handleStepExit(response) {
-      const el = response.element;
-      el.style.opacity = 0.2;
+    function handleStepEnter(response) {
+      const index = parseInt(response.element.id.split('-')[1]) - 1;
+      const sticky = document.querySelector('.sticky');
+      sticky.style.backgroundImage = `url(${images[index]})`;
     }
 
     function init() {
@@ -80,13 +78,11 @@
         progress: false,
         debug: false,
       })
-      .onStepEnter(handleStepEnter)
-      .onStepExit(handleStepExit);
+      .onStepEnter(handleStepEnter);
 
-      // Set up the initial opacity
-      document.querySelectorAll('.scroll').forEach((step) => {
-        step.style.opacity = 0.2;
-      });
+      // Set up the initial background image
+      const sticky = document.querySelector('.sticky');
+      sticky.style.backgroundImage = `url(${images[0]})`;
     }
 
     init();
