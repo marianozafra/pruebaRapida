@@ -1,8 +1,7 @@
-## Título de este readme de pruebas para ir viendo
+## Este es el readme del proyecto con el que estoy aprendiendo Github
 
-Aquí más texto y una *cursiva*
+Además, varias de estas páginas han sido generadas con ChatGPT
 
-Aquí una **negrita**
 
 
 ### Y un título menor
