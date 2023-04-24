@@ -3,30 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A ver ahora el título título del scroll.html</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/scrollstory@0.3.0/dist/jquery.scrollstory.min.js"></script>
+  <title>Scrollytelling Example with Scrollama</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scroll {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: lightcoral;
+    }
+
+    .scroll:nth-child(even) {
+      background-color: lightseagreen;
+    }
+  </style>
+  <script src="https://unpkg.com/scrollama@3.0.3/dist/scrollama.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-    <div class="scrollytelling" id="scrollstory">
-      <div class="story" data-image-src="https://picsum.photos/id/100/800/600">
-        <p>Text 1</p>
-      </div>
-      <div class="story" data-image-src="https://picsum.photos/id/200/800/600">
-        <p>Text 2</p>
-      </div>
-    </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent libero.</p>
-    <div class="grid">
-      <img src="https://picsum.photos/id/101/200/200">
-      <img src="https://picsum.photos/id/102/200/200">
-      <img src="https://picsum.photos/id/103/200/200">
-      <img src="https://picsum.photos/id/104/200/200">
-    </div>
+
+  <div class="sticky">
+    <h1>Scroll down to explore!</h1>
   </div>
-  <script src="script.js"></script>
+
+  <div class="scroll" id="step-1">
+    <p>Step 1: Introduction</p>
+  </div>
+
+  <div class="scroll" id="step-2">
+    <p>Step 2: The beginning</p>
+  </div>
+
+  <div class="scroll" id="step-3">
+    <p>Step 3: The journey</p>
+  </div>
+
+  <div class="scroll" id="step-4">
+    <p>Step 4: The end</p>
+  </div>
+
+  <script>
+    const scrollama = window.scrollama;
+    const scroller = scrollama();
+
+    function handleStepEnter(response) {
+      const el = response.element;
+      el.style.opacity = 1;
+    }
+
+    function handleStepExit(response) {
+      const el = response.element;
+      el.style.opacity = 0.2;
+    }
+
+    function init() {
+      scroller.setup({
+        step: '.scroll',
+        offset: 0.5,
+        progress: false,
+        debug: false,
+      })
+      .onStepEnter(handleStepEnter)
+      .onStepExit(handleStepExit);
+
+      // Set up the initial opacity
+      document.querySelectorAll('.scroll').forEach((step) => {
+        step.style.opacity = 0.2;
+      });
+    }
+
+    init();
+  </script>
 </body>
 </html>
