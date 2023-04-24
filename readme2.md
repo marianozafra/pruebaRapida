@@ -1,18 +1,27 @@
-### Readme 2 para hacer un par de estropicios
-Con este documento arreglaré problemas de sincronización entre github y local
+### Guía de markdown
+Este documento lo he editado desde github
 
-### Cambios desde Github
-Algunos cambios de texto
-### Estos son cambios desde mi repositorio local
-Texto local
-### Estos son cambios desde mi repositorio local
-Texto local
-texto cambiado en github otra vez
-texto que cambio en local otra vez, pero en el readme 2
+Recursos del curso de Github para aprender markdown
 
-- [x] V.0.1.0
+Markdown de GitHub
+Tutorial de Markdown:
+
+[Tutorial markdown](Markdowntutorial.com)
 
 
+
+GitHub Markdown sheet
+
+GitHub Markdown Style Sheet
+
+
+
+🌻 Emojis de GitHub
+
+[Emojis](https://www.webfx.com/tools/emoji-cheat-sheet/)
+
+
+Títulos
 # h1
 ## h2
 ### h3
@@ -20,6 +29,8 @@ texto que cambio en local otra vez, pero en el readme 2
 ##### h5
 ###### h6
 
+
+Listas
 * A
 * B
 * D
@@ -27,12 +38,24 @@ texto que cambio en local otra vez, pero en el readme 2
   * 1
   * 2
   * 3
-
-
+  * 
+Imágenes
 ![github loo](https://avatars.githubusercontent.com/u/583231?v=4)
 
+Checklists
 - [x] V.0.1.0
 
 - [X] V0.1.2
 - [X] V0.1.3
 - [x] V.0.1.0
+
+If you're thinking to yourself, **_This is unbelievable_**, you'd probably be right.
+
+Enlace a dentro del mismo documento. Reference links
+
+  Here's [a link to something else][another place].
+     Here's [yet another link][another-link].
+     And now back to [the first link][another place].
+
+     [another place]: www.github.com
+     [another-link]: www.google.com
