@@ -59,3 +59,5 @@ Enlace a dentro del mismo documento. Reference links
 
      [another place]: www.github.com
      [another-link]: www.google.com
+
+https://github.com/marianozafra/pruebaRapida/blob/ab0d88ff05c7394a3c1e6ea34f5dc5dd54e919d6/ai/cubo.svg
