@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SVG Animations</title>
+    <style>
+      #svg-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #eee;
+      }
+      #line {
+        stroke: #777;
+        stroke-width: 1;
+      }
+      #box {
+        fill: #777;
+        transition: all 1s ease-in-out;
+      }
+      #box.active {
+        fill: blue;
+      }
+      #svg {
+        width: 1000px;
+        height: 1000px;
+        background-color: #eee;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px;
+        background-color: #ccc;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">SVG animation width ChatGPT</h1>
+    <div id="svg-container">
+      <svg id="svg">
+        <line id="line" x1="100" y1="500" x2="100" y2="500" />
+        <rect id="box" x="100" y="510" width="100" height="100" />
+      </svg>
+    </div>
+    <div>
+      <button id="start-button">Start</button>
+      <button id="pause-button">Pause</button>
+    </div>
+    <script>
+      var line = document.getElementById('line');
+      var box = document.getElementById('box');
+      var startButton = document.getElementById('start-button');
+      var pauseButton = document.getElementById('pause-button');
+      var boxActive = false;
+      var boxWidth = 100;
+      
+      startButton.addEventListener('click', function() {
+        line.setAttribute('x2', '500');
+        box.setAttribute('width', '300');
+        boxActive = true;
+        box.classList.add('active');
+      });
+      
+      pauseButton.addEventListener('click', function() {
+        line.setAttribute('x2', '100');
+        box.setAttribute('width', '100');
+        boxActive = false;
+        box.classList.remove('active');
+      });
+      
+      box.addEventListener('transitionend', function() {
+        if (boxActive) {
+          boxWidth = 300;
+        } else {
+          boxWidth = 100;
+        }
+        box.setAttribute('width', boxWidth);
+      });
+    </script>
+  </body>
+</html>
