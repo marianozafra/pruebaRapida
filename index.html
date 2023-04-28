@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrollytelling Example with Scrollama</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    .sticky-container {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+    }
+
+    .image-container {
+      width: 500px;
+      height: 500px;
+      position: relative;
+    }
+
+    .image-container img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .scroll {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .text-content {
+      width: 350px;
+      background-color: black;
+      color: white;
+      padding: 20px;
+    }
+  </style>
+  <script src="https://unpkg.com/scrollama"></script>
+</head>
+<body>
+
+  <div class="sticky-container">
+    <div class="image-container">
+      <img src="https://picsum.photos/id/100/500/500" alt="Image 1" id="image-1">
+      <img src="https://picsum.photos/id/101/500/500" alt="Image 2" id="image-2" style="opacity: 0;">
+      <img src="https://picsum.photos/id/102/500/500" alt="Image 3" id="image-3" style="opacity: 0;">
+    </div>
+  </div>
+
+  <div class="scroll" id="text-1">
+    <div class="text-content">
+      <p>First text of this scrolling generated with chatgpt</p>
+    </div>
+  </div>
+
+  <div class="scroll" id="text-2">
+    <div class="text-content">
+      <p>The first image should change</p>
+    </div>
+  </div>
+
+  <div class="scroll" id="text-3">
+    <div class="text-content">
+      <p>Text 3</p>
+    </div>
+  </div>
+
+  <script>
+    const scrollama = window.scrollama;
+    const scroller = scrollama();
+
+    function handleStepEnter(response) {
+      const index = parseInt(response.element.id.split('-')[1]);
+      const images = document.querySelectorAll('.image-container img');
+      images.forEach((img, i) => {
+        img.style.opacity = i === index - 1 ? 1 : 0;
+      });
+    }
+
+    function init() {
+      scroller.setup({
+        step: '.scroll',
+        offset: 0.5,
+        progress: false,
+        debug: false,
+      })
+      .onStepEnter(handleStepEnter);
+    }
+
+    init();
+  </script>
+</body>
+</html>
